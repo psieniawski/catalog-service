@@ -1,4 +1,4 @@
-#Dummy Spring Boot REST on Kubernetes
+# Dummy Spring Boot REST on Kubernetes
 
 
 ./gradlew bootBuildImage
