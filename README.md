@@ -1,3 +1,6 @@
+#Dummy Spring Boot REST on Kubernetes
+
+
 ./gradlew bootBuildImage
 ***
 docker run --rm --name catalog-service -p 8080:8080 --platform linux/amd64 catalog-service:0.0.1-SNAPSHOT
