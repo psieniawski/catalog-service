@@ -15,5 +15,5 @@ class BookService(val bookRepo: BookRepository) {
 
 
     private fun Book?.merge(book: Book) =
-        this?.copy(author = book.author, title = book.title, price = book.price) ?: book
+        this?.copy(author = book.author, title = book.title, price = book.price, version = book.version) ?: book
 }

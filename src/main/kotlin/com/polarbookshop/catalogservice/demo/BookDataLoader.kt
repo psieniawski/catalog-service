@@ -14,15 +14,15 @@ class BookDataLoader(@Autowired val bookRepo: BookRepository) {
 
     @EventListener(ApplicationReadyEvent::class)
     fun loadBookTestData() {
-        val book1 = Book(
+        bookRepo.deleteAll();
+        val book1 = Book.of(
             "1234567891", "Marian",
             "Życie Mariana", 9.90
         )
-        val book2 = Book(
+        val book2 = Book.of(
             "1234567892", "Zofia",
             "Mój dramat", 12.90
         )
-        bookRepo.save(book1)
-        bookRepo.save(book2)
+        bookRepo.saveAll(listOf(book1,book2))
     }
 }

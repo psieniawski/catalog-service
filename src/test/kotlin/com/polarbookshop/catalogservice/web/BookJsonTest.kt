@@ -12,8 +12,10 @@ class BookJsonTest(@Autowired val json: JacksonTester<Book>) {
 
     @Test
     fun testSerialize() {
-        val book = Book("1234567890", "Author", "Title", 9.90)
+        val book = Book.of("1234567890", "Author", "Title", 9.90)
         val jsonContent = json.write(book)
+        assertThat(jsonContent).extractingJsonPathNumberValue("@.id").isEqualTo(book.id)
+        assertThat(jsonContent).extractingJsonPathNumberValue("@.version").isEqualTo(book.version)
         assertThat(jsonContent).extractingJsonPathStringValue("@.isbn").isEqualTo(book.isbn)
         assertThat(jsonContent).extractingJsonPathStringValue("@.title").isEqualTo(book.title)
         assertThat(jsonContent).extractingJsonPathStringValue("@.author").isEqualTo(book.author)
@@ -32,6 +34,6 @@ class BookJsonTest(@Autowired val json: JacksonTester<Book>) {
             """.trimIndent()
         assertThat(json.parse(content))
             .usingRecursiveComparison()
-            .isEqualTo(Book("1234567890", "Author", "Title", 9.90))
+            .isEqualTo(Book.of("1234567890", "Author", "Title", 9.90))
     }
 }

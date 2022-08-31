@@ -25,5 +25,5 @@ class BookController(val bookService: BookService) {
     fun delete(@PathVariable isbn: String) = bookService.removeBookFromCatalog(isbn)
 
     @PutMapping("{isbn}")
-    fun put(@RequestParam isbn: String, @RequestBody @Valid book: Book) = bookService.updateBookDetails(isbn, book)
+    fun put(@PathVariable isbn: String, @RequestBody @Valid book: Book) = bookService.updateBookDetails(isbn, book)
 }
