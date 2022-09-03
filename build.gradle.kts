@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 import org.springframework.boot.gradle.tasks.run.BootRun
 
 plugins {
@@ -51,6 +52,11 @@ dependencyManagement {
 
 kapt {
     showProcessorStats = true
+}
+
+tasks.named<BootBuildImage>("bootBuildImage") {
+    imageName = project.name
+    environment = mapOf("BP_JVM_VERSION" to "17.*")
 }
 
 tasks.named<BootRun>("bootRun") {
